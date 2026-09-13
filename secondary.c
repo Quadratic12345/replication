@@ -4,7 +4,7 @@
 #include<sys/socket.h>
 #include<netdb.h>
 
-#define PRIMARY_HOST"127.0.0.1"
+#define PRIMARY_HOST "127.0.0.1"
 #define PORT "9000"
 
 int main(){
