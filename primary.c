@@ -19,12 +19,14 @@ int main()
     hints.ai_family=AF_INET;
     //sock stream is used because we want a stream socket
     hints.ai_socktype=SOCK_STREAM;
-    hints.ai_flags=AI_PASSIVE:
+    hints.ai_flags=AI_PASSIVE;
 
-    if (getaddrinfo(NULL,PORT,&hints,&result)!=0){
-        perror("getaddrinfo");
-        return 0;
+    int rv = getaddrinfo(NULL, PORT, &hints, &result);
+    if (rv != 0) {
+        fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(rv));
+        return 1;
     }
+
     //creating the socket now
     //server_fd are file desciptor some resources are represented using descriptors
     server_fd=socket(
@@ -55,14 +57,14 @@ int main()
         return 0;
 
     }
-    printf("primarily waiting for the replica");
+    printf("primarily waiting for the replica \n");
     replica_fd=accept(server_fd,NULL,NULL);
     if(replica_fd==-1){
         perror("accept");
         close(server_fd);
         return 0;
     }
-    printf("The Replica connected");
+    printf("The Replica connected \n");
 
     //creating an user array which temporarily stores the operation entered by the user
     char buffer[1024];
