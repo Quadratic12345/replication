@@ -74,7 +74,7 @@ int main()
         fflush(stdout);
         if(fgets(buffer,sizeof(buffer),stdin)==NULL)
             break;
-        buffer[strcspn(buffer,"\n")] = "\0";
+        buffer[strcspn(buffer,"\n")] = '\0';
 
         if(strcmp(buffer,"QUIT")==0){
             send(replica_fd,buffer,strlen(buffer),0);
